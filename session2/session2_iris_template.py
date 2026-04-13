@@ -4,7 +4,7 @@ Note: Variable names must match exactly because later sessions import these name
 
 # Task 1: Print Flower Summary
 id = "flower1"  # Task 2: Change this to "flower_2x"
-print("=== Flower Summary ===")
+print("\n=== Flower Summary ===")
 print("ID:", id) 
 
 # Task 3: Define more variables for one Iris flower
