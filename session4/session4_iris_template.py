@@ -38,14 +38,17 @@ def setup_application_list():
     }
 
     flower2 = {
-    #     "id": "flower2",
-    # }
+        "id": "flower2",
+        "sepal_length": 4.9,
+        "sepal_width": 3.0,
+        "petal_lentgh": 1.4,
+        "petal_width": 0.2,
+        "species":"setosa"
+    }
 
     # Task 2 in session 3: Build the dataset list
     # Combine our dictionaries into a single list
-    dataset = [flower1
-               #    , flower2
-               ]
+    dataset = [flower1, flower2]
     print("Dataset:", dataset)
     # Note here that we return the dataset list from this function, so we can use it later in the main function.
     return dataset
