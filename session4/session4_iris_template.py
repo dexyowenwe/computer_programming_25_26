@@ -37,7 +37,7 @@ def setup_application_list():
         "species": "setosa"
     }
 
-    # flower2 = {
+    flower2 = {
     #     "id": "flower2",
     # }
 
