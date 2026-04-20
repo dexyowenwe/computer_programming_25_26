@@ -48,12 +48,13 @@ class IrisRuleClassifier:
                                are predicted as setosa.
         """
         # Store the threshold as an attribute on self.
-        # self.threshold = <your code here>
-
         # We enforce these attribute names so later sessions can reuse your class.
-        # self.positive_label = <your code here>   # should be the string "setosa"
-        # self.negative_label = <your code here>   # should be the string "not_setosa"
+        # should be the string "setosa"
+        # should be the string "not_setosa"
         pass
+    self.threshold = threshold
+    self.positive_label = "setosa"
+    self.negative_label = "not setosa"
 
     def print_status(self, status_text):
         """Print a small status message in the format: [STATUS] <status_text>.
@@ -85,6 +86,11 @@ class IrisRuleClassifier:
         # 3. Return self.positive_label if petal_length < self.threshold
         # 4. Otherwise return self.negative_label
         pass
+        if sample ["petal_length"] < self.threshold : 
+            return self.positive_label
+        else : 
+            return self.negative_label
+
 
     # Task 3: Implement derive_true_label
     def derive_true_label(self, sample):
@@ -104,6 +110,10 @@ class IrisRuleClassifier:
             str: self.positive_label if species matches, else self.negative_label.
         """
         pass
+        if sample ["species"] == "setosa" : 
+            return self.positive_label
+        else : 
+            return self.negative_label
 
     # Task 4: Implement update_result_counts
     def update_result_counts(self, correct, wrong, total, y_pred_list, y_pred, y_true):
@@ -129,6 +139,15 @@ class IrisRuleClassifier:
         # 4. Append y_pred to y_pred_list
         # 5. Return the tuple: (correct, wrong, total, y_pred_list)
         pass
+        if y_pred == y_true : 
+            correct += 1
+        else : 
+            wrong += 1
+        
+        total += 1
+        y_pred_list.append(y_pred)
+
+        return correct, wrong, total, y_pred_list
 
     # Task 5: Implement calculate_accuracy
     def calculate_accuracy(self, correct, total):
@@ -146,6 +165,10 @@ class IrisRuleClassifier:
         #     return (correct / total) * 100
         # Otherwise return 0.0 to avoid dividing by zero
         pass
+        if total > 0:
+            return (correct / total) * 100
+        else : 
+            return 0.0
 
     # Task 6: Implement run_prediction_loop
     def run_prediction_loop(self, dataset):
@@ -168,18 +191,19 @@ class IrisRuleClassifier:
 
         print("\n=== Start Session 6 Prediction Loop ===")
 
-        # for sample in dataset:
-        # y_pred = self.compute_threshold_prediction(<your code here>)
-        # y_true = self.derive_true_label(<your code here>)
-        # correct, wrong, total, y_pred_list = self.update_result_counts(
-        #     correct, wrong, total, y_pred_list, y_pred, y_true
-        # )
-        # print(
-        #     f"id={sample['id']} | true={y_true} | pred={y_pred} | "
-        #     f"petal_length={sample['petal_length']}"
-        # )
+        for sample in dataset:
+        y_pred = self.compute_threshold_prediction(sample)
+        y_true = self.derive_true_label(sample)
+        correct, wrong, total, y_pred_list = self.update_result_counts(
+            correct, wrong, total, y_pred_list, y_pred, y_true
+        )
+        print(
+            f"id={sample['id']} | true={y_true} | pred={y_pred} | "
+            f"petal_length={sample['petal_length']}"
+        )
 
-        # return correct, wrong, total, y_pred_list
+
+        return correct, wrong, total, y_pred_list
         pass
 
     # Task 7: Implement print_summary
@@ -193,12 +217,12 @@ class IrisRuleClassifier:
             y_pred_list (list): All predictions made.
             accuracy (float): Accuracy percentage.
         """
-        # print("\n=== Session 6 Summary ===")
-        # print("Correct:", <your code here>)
-        # print("Wrong:  ", <your code here>)
-        # print("Total:  ", <your code here>)
-        # print("Accuracy (%):", round(<your code here>, 2))
-        # print("All predictions:", <your code here>)
+        print("\n=== Session 6 Summary ===")
+        print("Correct:", correct)
+        print("Wrong:  ", wrong)
+        print("Total:  ", total)
+        print("Accuracy (%):", round(accuracy, 2))
+        print("All predictions:", y_pred_list)
         pass
 
 
@@ -241,3 +265,8 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+
+
+class
