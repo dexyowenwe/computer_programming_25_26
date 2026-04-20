@@ -203,7 +203,7 @@ class IrisRuleClassifier:
         )
 
 
-        return correct, wrong, total, y_pred_list
+        return correct, wrong, total, y_pred_list 
         pass
 
     # Task 7: Implement print_summary
@@ -229,37 +229,36 @@ class IrisRuleClassifier:
 def main():
 
     # Step 1a: Create a classifier object with a chosen threshold
-    # classifier = IrisRuleClassifier(<your code here>)
-    # print("Threshold:", <your code here>)
-    # print("Positive label:", <your code here>)
-    # print("Negative label:", <your code here>)
+    classifier = IrisRuleClassifier(2.0)
+    print("Threshold:", classifier.threshold)
+    print("Positive label:", classifier.positive_label)
+    print("Negative label:", classifier.negative_label)
 
     # Task 2: Implement compute_threshold_prediction
     # Can you write the syntax by urself
-    # sample = <your code here>
-    # prediction = <your code here>
-    # print(<your code here>) # should print: setosa
+    sample = {"petal_length": 1.4}
+    prediction = classifier.compute_threshold_prediction(sample)
+    print(prediction) # should print: setosa
 
     # Task 3: Implement derive_true_label
-    # sample_setosa = {"species": "setosa", "petal_length": 1.4}
-    # sample_versicolor = {"species": "versicolor", "petal_length": 4.7}
+    sample_setosa = {"species": "setosa", "petal_length": 1.4}
+    sample_versicolor = {"species": "versicolor", "petal_length": 4.7}
     # # setosa
-    # print(f"Setosa prediction: {classifier.derive_true_label(sample_setosa)}")
-    # # not_setosa
-    # print(
-    #     f"Versicolor prediction: {classifier.derive_true_label(sample_versicolor)}")
+    print(f"Setosa prediction: {classifier.derive_true_label(sample_setosa)}")
+    # not_setosa
+    print(f"Versicolor prediction: {classifier.derive_true_label(sample_versicolor)}")
 
     # Task 6: Implement run_prediction_loop
     dataset = setup_application_list()
-    # correct, wrong, total, y_pred_list = classifier.run_prediction_loop(<your code here>)
+    correct, wrong, total, y_pred_list = classifier.run_prediction_loop(dataset)
 
     # Step 5: Calculate accuracy from the returned counters
     # >> Just uncomment the code below, as you have already implemented calculate_accuracy in Task 5.
-    # accuracy = classifier.calculate_accuracy(correct,<your code here>)
+    accuracy = classifier.calculate_accuracy(correct,total)
 
     # Step 7: Print a final status message and the summary
-    # classifier.print_status(<your code here>)
-    # classifier.print_summary(<your code here>)
+    classifier.print_status("prediction completed")
+    classifier.print_summary(correct, wrong, total, y_pred_list, accuracy)
     pass
 
 
@@ -269,4 +268,3 @@ if __name__ == "__main__":
 
 
 
-class
