@@ -31,13 +31,12 @@ def setup_application_list():
 
 
 # Task 1: Refactor calculate_accuracy to use keyword-friendly defaults
-def calculate_accuracy(correct=< your_code >, total=< your_code >):
+def calculate_accuracy (correct=< your_code >, total=< your_code >):
     """Calculate the accuracy percentage."""
     if total > 0:
         accuracy = (correct / total) * 100
     else:
         accuracy = 0.0
-
     return accuracy
 
 
